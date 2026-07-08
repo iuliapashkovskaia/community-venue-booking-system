@@ -1,0 +1,87 @@
+{% extends 'baseone.html' %}
+{% load static %}
+
+{% block title %}Spaces{% endblock %}
+
+{% block content %}
+
+<section class="section">
+    <div class="section-title">
+        <div>
+            <h2>Venues & Spaces</h2>
+            <p>Explore our beautiful event spaces and facilities.</p>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="venue-thumb">
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_2_rb63ik " alt="Main Hall">
+            </div>
+            <h3>Main Hall</h3>
+            <p class="meta">Capacity: 120 guests</p>
+            <div class="price">£250 / day</div>
+            <p>Elegant ballroom with crystal chandeliers, panoramic windows and luxury event facilities.</p>
+            <a href="{% url 'details' %}" class="btn primary">View Details</a>
+        </div>
+
+        <div class="card">
+            <div class="venue-thumb">
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_3_zuloya " alt="Meeting Room">
+            </div>
+            <h3>Meeting Room</h3>
+            <p class="meta">Capacity: 40 guests</p>
+            <div class="price">£120 / day</div>
+            <p>Modern conference room with projector, glass walls and park views.</p>
+            <a href="{% url 'details' %}" class="btn primary">View Details</a>
+        </div>
+
+        <div class="card">
+            <div class="venue-thumb">
+                <img src="https://luxe-fitness.com/_next/image?url=https%3A%2F%2Fd1n8jeu8c3i2lu.cloudfront.net%2Fimages%2F1721834467667-Bedminster1.webp&w=640&q=75" alt="Sports Room">
+            </div>
+            <h3>Sports Room</h3>
+            <p class="meta">Capacity: 60 guests</p>
+            <div class="price">£150 / day</div>
+            <p>Comfortable community space for workshops, classes and local events.</p>
+            <a href="{% url 'details' %}" class="btn primary">View Details</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <div>
+            <h2>Additional Facilities</h2>
+            <p>Enhance your event experience.</p>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="venue-thumb">
+                <img src="https://nationalcentreinverclyde.org.uk/media/byghyi2l/other-facilities-thumbnail.png" alt="Swimming Pool">
+            </div>
+            <h3>Indoor Swimming Pool</h3>
+            <p>Luxury hotel style swimming pool with garden views.</p>
+        </div>
+
+        <div class="card">
+            <div class="venue-thumb">
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_5_oneo4n" alt="Wedding Setup">
+            </div>
+            <h3>Wedding Venue</h3>
+            <p>Elegant outdoor wedding setup with fountain and gardens.</p>
+        </div>
+
+        <div class="card">
+            <div class="venue-thumb">
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_6_ydrgvp" alt="Aerial View">
+            </div>
+            <h3>Estate Overview</h3>
+            <p>Complete aerial view of the venue and grounds.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

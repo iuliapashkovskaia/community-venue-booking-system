@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}VenueCo. Booking and Events System{% endblock %}</title>
+
+    <style>
+
+        :root{
+
+            --dark:#0F172A;
+
+            --text:#1E293B;
+
+            --muted:#64748B;
+
+            --sky:#D1E8F8;
+
+            --sky-soft:#F6FBFF;
+
+            --sky-light:#EAF6FD;
+
+            --blue:#5DA9E9;
+
+            --blue-dark:#2F80C9;
+
+            --white:#FFFFFF;
+
+            --cream:#FFFDF8;
+
+            --gold:#F7B986;
+
+            --border:#E2E8F0;
+
+            --success:#16A34A;
+
+            --danger:#DC2626;
+
+            --warning:#F59E0B;
+
+            --shadow:0 18px 45px rgba(15,23,42,.08);
+
+            --shadow-soft:0 10px 25px rgba(15,23,42,.06);
+
+            --radius:22px;
+
+        }
+
+        *{ box-sizing:border-box; }
+
+        html{ scroll-behavior:smooth; }
+
+        body{
+
+            margin:0;
+
+            font-family:Arial, Helvetica, sans-serif;
+
+            background:linear-gradient(180deg,var(--sky-soft),#EEF4FA);
+
+            color:var(--text);
+
+            line-height:1.5;
+
+        }
+
+        a{
+
+            text-decoration:none;
+
+            color:inherit;
+
+        }
+
+        button,
+
+        input,
+
+        select,
+
+        textarea{
+
+            font:inherit;
+
+        }
+
+        main{ min-height:70vh; }
+
+        .topbar{
+
+            position:sticky;
+
+            top:0;
+
+            z-index:20;
+
+            background:rgba(255,255,255,.94);
+
+            backdrop-filter:blur(14px);
+
+            border-bottom:1px solid var(--border);
+
+            padding:18px 34px;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+        }
+
+        .brand{
+
+            font-size:1.55rem;
+
+            font-weight:900;
+
+            letter-spacing:-.04em;
+
+            color:var(--dark);
+
+        }
+
+        .brand span{ color:var(--blue-dark); }
+
+        .nav{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:12px;
+
+            font-weight:800;
+
+            font-size:.95rem;
+
+        }
+
+        .nav a{
+
+            padding:10px 15px;
+
+            border-radius:999px;
+
+            color:var(--dark);
+
+            transition:.2s ease;
+
+        }
+
+        .nav a:hover,
+
+        .nav a.active{
+
+            background:var(--sky);
+
+            color:var(--blue-dark);
+
+        }
+
+        .section{
+
+            max-width:1180px;
+
+            margin:0 auto;
+
+            padding:58px 24px;
+
+        }
+
+        .section-title{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:end;
+
+            gap:20px;
+
+            margin-bottom:28px;
+
+        }
+
+        .section-title h2{
+
+            margin:0;
+
+            font-size:clamp(1.8rem,3vw,2.7rem);
+
+            line-height:1;
+
+            letter-spacing:-.05em;
+
+            color:var(--dark);
+
+        }
+
+        .section-title p{
+
+            margin:0;
+
+            max-width:580px;
+
+            color:var(--muted);
+
+            font-size:1rem;
+
+        }
+
+        .meta{
+
+            color:var(--muted);
+
+            font-size:.94rem;
+
+        }
+
+        .price{
+
+            color:var(--blue-dark);
+
+            font-size:1.55rem;
+
+            font-weight:900;
+
+            margin:10px 0;
+
+        }
+
+        .image-cover{
+
+            width:100%;
+
+            height:100%;
+
+            object-fit:cover;
+
+            display:block;
+
+        }
+
+        .rounded{ border-radius:18px; }
+
+        .image-card{
+
+            overflow:hidden;
+
+            border-radius:var(--radius);
+
+            border:1px solid var(--border);
+
+            box-shadow:var(--shadow-soft);
+
+            background:#fff;
+
+        }
+
+        .image-card img{
+
+            width:100%;
+
+            height:100%;
+
+            object-fit:cover;
+
+            display:block;
+
+        }
+
+        .hero{
+
+            padding:80px 24px;
+
+            background:
+
+                radial-gradient(circle at 15% 20%, rgba(209,232,248,.95), transparent 35%),
+
+                linear-gradient(135deg,#FFFFFF 0%,#D1E8F8 100%);
+
+            border-bottom:1px solid var(--border);
+
+        }
+
+        .hero-grid{
+
+            max-width:1180px;
+
+            margin:auto;
+
+            display:grid;
+
+            grid-template-columns:1.05fr .95fr;
+
+            gap:42px;
+
+            align-items:center;
+
+        }
+
+        .hero h1{
+
+            margin:0 0 22px;
+
+            font-size:clamp(2.5rem,5vw,4.8rem);
+
+            line-height:.98;
+
+            letter-spacing:-.07em;
+
+            color:var(--dark);
+
+        }
+
+        .hero p{
+
+            margin:0 0 30px;
+
+            max-width:650px;
+
+            font-size:1.12rem;
+
+            color:var(--muted);
+
+        }
+
+        .hero-card{
+
+            background:rgba(255,255,255,.9);
+
+            border:1px solid rgba(255,255,255,.95);
+
+            border-radius:var(--radius);
+
+            overflow:hidden;
+
+            box-shadow:var(--shadow);
+
+        }
+
+        .hero-card img{
+
+            width:100%;
+
+            height:300px;
+
+            object-fit:cover;
+
+            display:block;
+
+        }
+
+        .hero-card-body{ padding:24px; }
+
+        .hero-card-body h3{
+
+            margin:0 0 8px;
+
+            font-size:1.5rem;
+
+            color:var(--dark);
+
+        }
+
+        .actions{
+
+            display:flex;
+
+            flex-wrap:wrap;
+
+            gap:12px;
+
+        }
+
+        .btn{
+
+            border:0;
+
+            border-radius:14px;
+
+            padding:13px 20px;
+
+            background:var(--blue);
+
+            color:#fff;
+
+            cursor:pointer;
+
+            display:inline-flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            min-height:46px;
+
+            font-weight:900;
+
+            box-shadow:0 10px 20px rgba(93,169,233,.22);
+
+            transition:.2s ease;
+
+        }
+
+        .btn:hover{
+
+            background:var(--blue-dark);
+
+            transform:translateY(-1px);
+
+        }
+
+        .btn.primary{
+
+            background:var(--blue);
+
+            color:#fff;
+
+        }
+
+        .btn.light{
+
+            background:#fff;
+
+            color:var(--dark);
+
+            border:1px solid var(--border);
+
+            box-shadow:none;
+
+        }
+
+        .btn.full{ width:100%; }
+
+        .cards{
+
+            display:grid;
+
+            grid-template-columns:repeat(3,1fr);
+
+            gap:20px;
+
+        }
+
+        .card{
+
+            background:rgba(255,255,255,.94);
+
+            border:1px solid rgba(226,232,240,.95);
+
+            border-radius:var(--radius);
+
+            padding:22px;
+
+            box-shadow:var(--shadow-soft);
+
+        }
+
+        .card h2,
+
+        .card h3{
+
+            color:var(--dark);
+
+            margin-top:0;
+
+        }
+
+        .venue-thumb{
+
+            height:180px;
+
+            border-radius:18px;
+
+            overflow:hidden;
+
+            background:linear-gradient(135deg,var(--sky),#fff);
+
+            margin-bottom:18px;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            color:var(--blue-dark);
+
+            font-weight:900;
+
+        }
+
+        .venue-thumb img{
+
+            width:100%;
+
+            height:100%;
+
+            object-fit:cover;
+
+            display:block;
+
+        }
+
+        .split{
+
+            display:grid;
+
+            grid-template-columns:.95fr 1.05fr;
+
+            gap:26px;
+
+            align-items:start;
+
+        }
+
+        .features{
+
+            list-style:none;
+
+            padding:0;
+
+            margin:14px 0 0;
+
+        }
+
+        .features li{
+
+            padding:10px 0;
+
+            border-bottom:1px solid var(--border);
+
+            color:var(--text);
+
+        }
+
+        .features li::before{
+
+            content:"✓";
+
+            color:var(--blue-dark);
+
+            font-weight:900;
+
+            margin-right:8px;
+
+        }
+
+        .form-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(2,1fr);
+
+            gap:16px;
+
+        }
+
+        .field.full{ grid-column:1/-1; }
+
+        label{
+
+            display:block;
+
+            font-weight:900;
+
+            font-size:.86rem;
+
+            margin-bottom:7px;
+
+            color:var(--dark);
+
+        }
+
+        input,
+
+        select,
+
+        textarea{
+
+            width:100%;
+
+            border:1px solid var(--border);
+
+            border-radius:12px;
+
+            padding:13px 14px;
+
+            background:#fff;
+
+            outline:none;
+
+            color:var(--text);
+
+        }
+
+        input:focus,
+
+        select:focus,
+
+        textarea:focus{
+
+            border-color:var(--blue);
+
+            box-shadow:0 0 0 4px rgba(209,232,248,.7);
+
+        }
+
+        textarea{
+
+            min-height:120px;
+
+            resize:vertical;
+
+        }
+
+        .admin-shell{
+
+            min-height:650px;
+
+            background:#fff;
+
+            border-radius:var(--radius);
+
+            overflow:hidden;
+
+            display:grid;
+
+            grid-template-columns:240px 1fr;
+
+            border:1px solid var(--border);
+
+            box-shadow:var(--shadow);
+
+        }
+
+        .sidebar{
+            background:
+                linear-gradient(180deg,rgba(209,232,248,.9),rgba(255,255,255,.95)),
+                url('/static/images/IMG_VenueCom_10.png');
+
+            background-size:cover;
+
+            background-position:center;
+
+            color:var(--dark);
+
+            padding:22px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:22px;
+
+            border-right:1px solid var(--border);
+
+        }
+
+        .sidebar strong{
+
+            font-size:1.1rem;
+
+            color:var(--dark);
+
+        }
+
+        .side-links{
+
+            display:grid;
+
+            gap:8px;
+
+        }
+
+        .side-links a{
+
+            padding:12px 13px;
+
+            border-radius:12px;
+
+            color:var(--text);
+
+            font-weight:800;
+
+        }
+
+        .side-links a.active,
+
+        .side-links a:hover{
+
+            background:rgba(255,255,255,.82);
+
+            color:var(--blue-dark);
+
+        }
+
+        .admin-main{
+
+            padding:28px;
+
+            background:
+
+                linear-gradient(180deg,rgba(246,251,255,.9),rgba(255,255,255,.92)),
+
+                url('/static/images/IMG_VenueCom_10.png');
+
+            background-size:cover;
+
+            background-position:center;
+
+        }
+
+        .admin-main h2{
+
+            margin-top:0;
+
+            color:var(--dark);
+
+        }
+
+        .stats{
+
+            display:grid;
+
+            grid-template-columns:repeat(4,1fr);
+
+            gap:16px;
+
+            margin-bottom:20px;
+
+        }
+
+        .stat strong{
+
+            display:block;
+
+            font-size:1.8rem;
+
+            color:var(--blue-dark);
+
+        }
+
+        .table-wrap{
+
+            overflow:auto;
+
+            background:#fff;
+
+            border:1px solid var(--border);
+
+            border-radius:var(--radius);
+
+            box-shadow:var(--shadow-soft);
+
+        }
+
+        table{
+
+            width:100%;
+
+            border-collapse:collapse;
+
+            min-width:780px;
+
+        }
+
+        th,
+
+        td{
+
+            padding:14px 16px;
+
+            border-bottom:1px solid var(--border);
+
+            text-align:left;
+
+            font-size:.94rem;
+
+        }
+
+        th{
+
+            background:var(--sky-light);
+
+            color:var(--dark);
+
+            font-weight:900;
+
+        }
+
+        .badge{
+
+            padding:6px 10px;
+
+            border-radius:999px;
+
+            font-size:.78rem;
+
+            font-weight:900;
+
+            display:inline-block;
+
+        }
+
+        .badge.confirmed{
+
+            background:#DCFCE7;
+
+            color:#166534;
+
+        }
+
+        .badge.pending{
+
+            background:#FEF3C7;
+
+            color:#92400E;
+
+        }
+
+        .badge.cancelled{
+
+            background:#FEE2E2;
+
+            color:#991B1B;
+
+        }
+
+        .chart-grid{
+
+            display:grid;
+
+            grid-template-columns:repeat(2,1fr);
+
+            gap:20px;
+
+        }
+
+        .bars{
+
+            height:180px;
+
+            display:flex;
+
+            align-items:end;
+
+            gap:9px;
+
+            padding-top:22px;
+
+        }
+
+        .bar{
+
+            flex:1;
+
+            border-radius:8px 8px 0 0;
+
+            background:linear-gradient(180deg,var(--blue),var(--sky));
+
+        }
+
+        .login-wrap{
+
+            min-height:70vh;
+
+            display:grid;
+
+            grid-template-columns:1fr 1fr;
+
+            background:#fff;
+
+            border-radius:var(--radius);
+
+            overflow:hidden;
+
+            box-shadow:var(--shadow);
+
+            border:1px solid var(--border);
+
+        }
+
+        .login-brand{
+
+            background:
+
+                linear-gradient(135deg,rgba(209,232,248,.92),rgba(255,255,255,.85)),
+
+                url('/static/images/IMG_VenueCom_8.png');
+
+            background-size:cover;
+
+            background-position:center;
+
+            display:flex;
+
+            flex-direction:column;
+
+            align-items:center;
+
+            justify-content:center;
+
+            padding:34px;
+
+            text-align:center;
+
+        }
+
+        .login-brand h2,
+
+        .login-brand p{
+
+            background:rgba(255,255,255,.78);
+
+            padding:8px 12px;
+
+            border-radius:12px;
+
+        }
+
+        .logo-box{
+
+            width:92px;
+
+            height:92px;
+
+            border:2px solid var(--blue-dark);
+
+            border-radius:24px;
+
+            margin-bottom:20px;
+
+            background:rgba(255,255,255,.75);
+
+        }
+
+        .login-form{
+
+            padding:44px;
+
+            display:flex;
+
+            flex-direction:column;
+
+            justify-content:center;
+
+        }
+
+        .login-form h2{
+
+            color:var(--dark);
+
+            margin-top:0;
+
+        }
+
+        @keyframes fadeInUp {
+
+            from {
+
+                opacity:0;
+
+                transform:translateY(24px);
+
+            }
+
+            to {
+
+                opacity:1;
+
+                transform:translateY(0);
+
+            }
+
+        }
+
+        .hero,
+
+        .card,
+
+        .hero-card,
+
+        .login-wrap {
+
+            animation:fadeInUp 0.8s ease forwards;
+
+        }
+
+        footer{
+
+            text-align:center;
+
+            padding:36px 20px;
+
+            background:#fff;
+
+            border-top:1px solid var(--border);
+
+            color:var(--muted);
+
+            font-weight:800;
+
+        }
+
+        .mobile-tabs{
+
+            display:none;
+
+            position:fixed;
+
+            bottom:0;
+
+            left:0;
+
+            right:0;
+
+            background:#fff;
+
+            border-top:1px solid var(--border);
+
+            padding:10px;
+
+            grid-template-columns:repeat(3,1fr);
+
+            gap:8px;
+
+            z-index:50;
+
+        }
+
+        .mobile-tabs a{
+
+            text-align:center;
+
+            padding:10px;
+
+            border-radius:12px;
+
+            font-size:.8rem;
+
+            background:var(--sky-light);
+
+            color:var(--dark);
+
+            font-weight:900;
+
+        }
+
+        @media (max-width:900px){
+
+            .topbar{
+
+                padding:14px 18px;
+
+            }
+
+            .nav{
+
+                display:none;
+
+            }
+
+            .hero{
+
+                padding:60px 20px;
+
+            }
+
+            .hero-grid,
+
+            .split,
+
+            .login-wrap{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .cards,
+
+            .stats,
+
+            .chart-grid{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .admin-shell{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .sidebar{
+
+                flex-direction:row;
+
+                overflow:auto;
+
+                align-items:center;
+
+            }
+
+            .side-links{
+
+                display:flex;
+
+                min-width:max-content;
+
+            }
+
+            .form-grid{
+
+                grid-template-columns:1fr;
+
+            }
+
+            .mobile-tabs{
+
+                display:grid;
+
+            }
+
+            body{
+
+                padding-bottom:78px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    {% include 'nav.html' %}
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    {% include 'footer.html' %}
+
+    <nav class="mobile-tabs">
+
+        <a href="{% url 'home' %}">Home</a>
+
+        <a href="{% url 'spaces' %}">Spaces</a>
+
+        <a href="{% url 'booking' %}">Book</a>
+
+    </nav>
+
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+{% extends 'baseone.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="admin-shell">
+
+        <aside class="sidebar">
+
+            <strong>
+
+                {% if request.user.is_superuser %}
+
+                    VenueCo. Admin
+
+                {% elif request.user.is_staff %}
+
+                    VenueCo. Staff
+
+                {% else %}
+
+                    VenueCo.
+
+                {% endif %}
+
+            </strong>
+
+            <nav class="side-links">
+
+                <a class="active" href="{% url 'dashboard' %}">
+
+                    Dashboard
+
+                </a>
+
+                {% if request.user.is_superuser or request.user.is_staff %}
+
+                    <a href="{% url 'booking' %}">
+
+                        Bookings
+
+                    </a>
+
+                    <a href="{% url 'spaces' %}">
+
+                        Spaces
+
+                    </a>
+
+                {% endif %}
+
+                {% if request.user.is_superuser %}
+
+                    <a href="{% url 'reports' %}">
+
+                        Reports
+
+                    </a>
+
+                    <a href="/iuliiap3/admin/">
+
+                        Django Admin
+
+                    </a>
+
+                {% endif %}
+
+                <a href="{% url 'logout' %}">
+
+                    Log Out
+
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <div class="admin-main">
+
+            <h2>Booking Overview</h2>
+
+            <p class="meta" style="margin-bottom:25px;">
+
+                Welcome,
+
+                <strong>{{ request.user.username }}</strong>
+
+                {% if request.user.is_superuser %}
+
+                    (Administrator)
+
+                {% elif request.user.is_staff %}
+
+                    (Staff)
+
+                {% else %}
+
+                    (Customer)
+
+                {% endif %}
+
+            </p>
+
+            <div class="stats">
+
+                <div class="card stat">
+
+                    <strong>128</strong>
+
+                    <span class="meta">Total Bookings</span>
+
+                </div>
+
+                <div class="card stat">
+
+                    <strong>4</strong>
+
+                    <span class="meta">Available Spaces</span>
+
+                </div>
+
+                {% if request.user.is_superuser %}
+
+                    <div class="card stat">
+
+                        <strong>£4,250</strong>
+
+                        <span class="meta">Estimated Sales</span>
+
+                    </div>
+
+                {% endif %}
+
+                <div class="card stat">
+
+                    <strong>12</strong>
+
+                    <span class="meta">Pending Requests</span>
+
+                </div>
+
+            </div>
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Room</th>
+
+                            <th>Date</th>
+
+                            <th>Hours</th>
+
+                            <th>Customer</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>#001</td>
+
+                            <td>Main Hall</td>
+
+                            <td>12 Jul 2026</td>
+
+                            <td>6</td>
+
+                            <td>John Smith</td>
+
+                            <td>
+
+                                <span class="badge confirmed">Confirmed</span>
+
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'edit_booking' 1 %}" class="btn primary">
+
+                                    Edit
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>#002</td>
+
+                            <td>Meeting Room</td>
+
+                            <td>13 Jul 2026</td>
+
+                            <td>3</td>
+
+                            <td>Jane Brown</td>
+
+                            <td>
+
+                                <span class="badge pending">Pending</span>
+
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'edit_booking' 2 %}" class="btn primary">
+
+                                    Edit
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>#003</td>
+
+                            <td>Sports Room</td>
+
+                            <td>14 Jul 2026</td>
+
+                            <td>2</td>
+
+                            <td>Alex Green</td>
+
+                            <td>
+
+                                <span class="badge cancelled">Cancelled</span>
+
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'edit_booking' 3 %}" class="btn primary">
+
+                                    Edit
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

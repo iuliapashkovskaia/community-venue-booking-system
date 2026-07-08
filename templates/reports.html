@@ -1,0 +1,143 @@
+{% extends 'baseone.html' %}
+
+{% load static %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>Reports & Statistics</h2>
+
+            <p>
+
+                Review booking performance, venue usage and estimated sales.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <article class="card">
+
+            <h3>Booking Statistics</h3>
+
+            <p class="meta">
+
+                128 total bookings · +12% this month
+
+            </p>
+
+            <div class="bars">
+
+                <div class="bar" style="height:35%"></div>
+
+                <div class="bar" style="height:70%"></div>
+
+                <div class="bar" style="height:55%"></div>
+
+                <div class="bar" style="height:80%"></div>
+
+                <div class="bar" style="height:60%"></div>
+
+                <div class="bar" style="height:95%"></div>
+
+                <div class="bar" style="height:75%"></div>
+
+            </div>
+
+        </article>
+
+        <article class="card">
+
+            <h3>Sales Information</h3>
+
+            <p class="meta">
+
+                £4,250 estimated revenue · +18%
+
+            </p>
+
+            <div class="bars">
+
+                <div class="bar" style="height:50%"></div>
+
+                <div class="bar" style="height:45%"></div>
+
+                <div class="bar" style="height:65%"></div>
+
+                <div class="bar" style="height:55%"></div>
+
+                <div class="bar" style="height:90%"></div>
+
+                <div class="bar" style="height:70%"></div>
+
+                <div class="bar" style="height:82%"></div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="split">
+
+        <div class="card">
+
+            <h3>Most Popular Spaces</h3>
+
+            <ul class="features">
+
+                <li>Main Hall — 48 bookings</li>
+
+                <li>Meeting Room — 34 bookings</li>
+
+                <li>Small Hall — 26 bookings</li>
+
+                <li>Sports Room — 20 bookings</li>
+
+            </ul>
+
+        </div>
+
+        <div class="card">
+
+            <div class="venue-thumb" style="height:260px;">
+
+                <img
+
+                    src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_11_eiusf5"
+
+                    alt="Event Details"
+
+                    style="width:100%;height:100%;object-fit:cover;display:block;">
+
+            </div>
+
+            <h3>Event Demand</h3>
+
+            <p class="meta">
+
+                Weddings, meetings and community events are currently the highest demand categories.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

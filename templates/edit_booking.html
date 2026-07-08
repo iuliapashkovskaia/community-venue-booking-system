@@ -1,0 +1,104 @@
+{% extends 'baseone.html' %}
+
+{% block title %}Edit Booking{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <a href="{% url 'dashboard' %}" class="btn light">
+        ← Back to Dashboard
+    </a>
+
+    <br><br>
+
+    <div class="card">
+
+        <h2>Edit Booking</h2>
+
+        <p class="meta">
+            Update the booking details below.
+        </p>
+
+        <form method="post" class="form-grid">
+
+            {% csrf_token %}
+
+            <div class="field full">
+                <label for="room">Room</label>
+
+                <select id="room" name="room" required>
+                    {% for room in rooms %}
+                        <option value="{{ room.id }}" {% if booking.room.id == room.id %}selected{% endif %}>
+                            {{ room.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="booking_date">Booking Date and Time</label>
+
+                <input
+                    id="booking_date"
+                    type="datetime-local"
+                    name="booking_date"
+                    value="{{ booking.booking_date|date:'Y-m-d\\TH:i' }}"
+                    required>
+            </div>
+
+            <div class="field">
+                <label for="hours">Hours</label>
+
+                <input
+                    id="hours"
+                    type="number"
+                    name="hours"
+                    value="{{ booking.hours }}"
+                    min="1"
+                    required>
+            </div>
+
+            <div class="field full">
+                <label for="notes">Notes</label>
+
+                <textarea id="notes" name="notes">{{ booking.notes }}</textarea>
+            </div>
+
+            <div class="field full">
+
+                <button type="submit" class="btn primary">
+                    Save Changes
+                </button>
+
+                <a href="{% url 'dashboard' %}" class="btn light">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+        {% if request.user.is_superuser %}
+            <hr style="margin:30px 0; border:0; border-top:1px solid var(--border);">
+
+            <h3>Admin Action</h3>
+
+            <p class="meta">
+                Only an administrator can remove this booking.
+            </p>
+
+            <form method="post" action="{% url 'delete_booking' booking.id %}">
+                {% csrf_token %}
+
+                <button type="submit" class="btn light">
+                    Remove Booking
+                </button>
+            </form>
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

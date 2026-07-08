@@ -1,0 +1,139 @@
+{% extends "baseone.html" %}
+
+{% load static %}
+
+{% block title %}Staff Login{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="login-wrap">
+
+        <!-- LEFT SIDE -->
+
+        <div class="login-brand">
+
+            <div class="logo-box">
+
+                <!-- <img src="{% static 'images/logo.png' %}" alt="VenueCo"> -->
+
+            </div>
+
+            <div class="brand-card">
+
+                <h2>VenueCo<span>.</span></h2>
+
+            </div>
+
+            <div class="brand-text">
+
+                Secure access for staff and booking management.
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="login-form">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <h2>Staff Login</h2>
+
+                <p class="meta">
+
+                    Please sign in to access the dashboard.
+
+                </p>
+
+                {% if form.errors %}
+
+                <div style="
+
+                    background:#fee2e2;
+
+                    color:#991b1b;
+
+                    padding:12px;
+
+                    border-radius:10px;
+
+                    margin-bottom:20px;
+
+                    border:1px solid #fecaca;
+
+                ">
+
+                    Invalid username or password.
+
+                </div>
+
+                {% endif %}
+
+                <label for="username">
+
+                    Username
+
+                </label>
+
+                <input
+
+                    id="username"
+
+                    type="text"
+
+                    name="username"
+
+                    placeholder="Enter your username"
+
+                    value="{{ form.username.value|default:'' }}"
+
+                    required
+
+                >
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+                <input
+
+                    id="password"
+
+                    type="password"
+
+                    name="password"
+
+                    placeholder="Enter your password"
+
+                    required
+
+                >
+
+                {% if next %}
+
+                    <input type="hidden" name="next" value="{{ next }}">
+
+                {% endif %}
+
+                <button class="btn primary full" type="submit">
+
+                    Login
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

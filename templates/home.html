@@ -1,0 +1,167 @@
+{% extends 'baseone.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-grid">
+
+        <div>
+
+            <h1>Luxury Venue Near London</h1>
+
+            <p>
+
+                Elegant spaces for weddings, conferences, community events,
+
+                sports activities and private celebrations.
+
+            </p>
+
+            <div class="actions">
+
+                <a href="{% url 'spaces' %}" class="btn primary">Explore Spaces</a>
+
+                <a href="{% url 'booking' %}" class="btn light">Book Now</a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <img
+
+                src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_1_kivnh4"
+
+                alt="Venue Estate"
+
+                style="width:100%;height:300px;object-fit:cover;display:block;">
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>Why Choose VenueCo?</h2>
+
+            <p>Beautiful surroundings, modern facilities and flexible event spaces.</p>
+
+        </div>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>Luxury Location</h3>
+
+            <p>Stunning architecture, landscaped gardens and a peaceful atmosphere.</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Flexible Spaces</h3>
+
+            <p>From business meetings to weddings and community events.</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Easy Booking</h3>
+
+            <p>Simple online booking process with fast confirmation.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+
+        <div>
+
+            <h2>Featured Spaces</h2>
+
+            <p>Discover our most popular rooms and facilities.</p>
+
+        </div>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="venue-thumb">
+
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_2_rb63ik"
+
+                     alt="Main Hall"
+
+                     style="width:100%;height:100%;object-fit:cover;display:block;">
+
+            </div>
+
+            <h3>Main Hall</h3>
+
+            <p class="meta">Capacity: 120 guests</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="venue-thumb">
+
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_3_zuloya"
+
+                     alt="Meeting Room"
+
+                     style="width:100%;height:100%;object-fit:cover;display:block;">
+
+            </div>
+
+            <h3>Meeting Room</h3>
+
+            <p class="meta">Modern conference facilities.</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="venue-thumb">
+
+                <img src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_5_lburqr"
+
+                     alt="Indoor Pool"
+
+                     style="width:100%;height:100%;object-fit:cover;display:block;">
+
+            </div>
+
+            <h3>Indoor Pool</h3>
+
+            <p class="meta">Luxury hotel style swimming pool.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

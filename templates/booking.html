@@ -1,0 +1,143 @@
+{% extends 'baseone.html' %}
+{% load static %}
+
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="section-title">
+        <div>
+            <h2>Book Your Event</h2>
+            <p>
+                Fill in the booking form and our team will contact you
+                to confirm the details.
+            </p>
+        </div>
+    </div>
+
+    <div class="split">
+
+        <form class="card" method="post">
+
+            {% csrf_token %}
+
+            <h3>Booking Details</h3>
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="name">Full Name</label>
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        placeholder="Your full name"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="phone">Phone Number</label>
+                    <input
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        placeholder="Your phone number"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="room">Select Room</label>
+
+                    <select id="room" name="room" required>
+                        <option value="">Choose a room</option>
+                        <option>Main Hall</option>
+                        <option>Meeting Room</option>
+                        <option>Small Hall</option>
+                        <option>Sports Room</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="date">Booking Date</label>
+                    <input
+                        id="date"
+                        type="date"
+                        name="booking_date"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="hours">Hours</label>
+                    <input
+                        id="hours"
+                        type="number"
+                        name="hours"
+                        min="1"
+                        max="24"
+                        placeholder="4"
+                        required>
+                </div>
+
+                <div class="field full">
+                    <label for="notes">Purpose of Booking</label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        placeholder="Tell us about your event"></textarea>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn primary full" type="submit">
+                Submit Booking
+            </button>
+
+        </form>
+
+        <div class="card">
+
+            <div class="venue-thumb" style="height:260px;">
+
+                <img
+                    src="https://res.cloudinary.com/ebnhydib/image/upload/f_auto,q_auto/IMG_VenueCom_8_fowbuv"
+                    alt="Reception"
+                    style="width:100%;height:100%;object-fit:cover;display:block;">
+
+            </div>
+
+            <h3>Need Help?</h3>
+
+            <p>
+                Our team is here to help you choose the best space
+                for your event.
+            </p>
+
+            <ul class="features">
+                <li>Fast booking support</li>
+                <li>Flexible venue options</li>
+                <li>Modern facilities</li>
+                <li>Beautiful estate location</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
